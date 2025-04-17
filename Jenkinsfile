@@ -19,7 +19,7 @@ pipeline {
         IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
         JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
-        BUILD_NUM_OF_CD = "${env.BUILD_NUMBER}"
+        BUILD_NUM_OF_CI = "${env.BUILD_NUMBER}"
     }
 
     parameters {
@@ -39,7 +39,7 @@ pipeline {
                 echo "Cloning ${GIT_REPO} branch: ${params.BRANCH_NAME}"
                 git branch: "${params.BRANCH_NAME}", url: "${GIT_REPO}", credentialsId: 'github'
                 sh "echo Printing Build Number of Job"
-                sh "echo Build Number of CI Job is: ${BUILD_NUM_OF_CD}"
+                sh "echo Build Number of CI Job is: ${BUILD_NUM_OF_CI}"
             }
         }
 
@@ -164,7 +164,7 @@ pipeline {
                         -X POST \\
                         -H "cache-control: no-cache" \\
                         -H "content-type: application/x-www-form-urlencoded" \\
-                        --data 'BUILD_NUM_OF_CD=${BUILD_NUM_OF_CD}' \\
+                        --data 'BUILD_NUM_OF_CD=${BUILD_NUM_OF_CI}' \\
                         --data 'APP_NAME=${APP_NAME}' \\
                         --data 'RELEASE=${RELEASE}' \\
                         --data 'DOCKER_USER=${DOCKER_USER}' \\
