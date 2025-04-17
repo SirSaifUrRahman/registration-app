@@ -159,7 +159,7 @@ pipeline {
                 script {
 
                     withCredentials([string(credentialsId: 'JENKINS_API_TOKEN', variable: 'TOKEN')]) {
-                    sh """
+                    sh '''
                         curl -v -k --user saif:$TOKEN \\
                         -X POST \\
                         -H "cache-control: no-cache" \\
@@ -171,7 +171,7 @@ pipeline {
                         --data 'IMAGE_NAME=${IMAGE_NAME}' \\
                         --data 'IMAGE_TAG=${IMAGE_TAG}' \\
                         "http://192.168.43.75:8080/job/gitops-register-app-cd/buildWithParameters?token=gitops-token"
-                    """
+                    '''
                     }
 
                     // sh """
