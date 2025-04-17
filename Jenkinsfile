@@ -111,7 +111,7 @@ pipeline {
                         usernameVariable: "DOCKER_USER",
                         passwordVariable: "DOCKER_PASS"
                     )]) {
-                        def imageNameWithTag = "${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
+                        def imageNameWithTag = "${IMAGE_NAME}:${IMAGE_TAG}"
 
                         // Build Docker image
                         def dockerImage = docker.build(imageNameWithTag)
